@@ -1,0 +1,293 @@
+/*documento*/
+
+:root {
+    --enf-one-col: linear-gradient(144deg, rgba(33, 82, 115, 1) 52%, rgba(53, 157, 158, 1) 100%);
+    --enf-two-col: linear-gradient(144deg, rgba(53, 157, 158, 1) 52%, rgba(85, 197, 149, 1) 100%);
+    --enf-three-col: linear-gradient(144deg, rgba(85, 197, 149, 1) 52%, rgba(124, 228, 149, 1) 100%);
+
+    --enfp-col1: #215273;
+    --enfp-col2: #359d9e;
+    --enfp-col3: #55c595;
+    --enfp-col4: #7ce495;
+    --enfp-col5: #cff4d2;
+}
+
+@media(max-width: 992px) {
+    .title-1 {
+        display: none;
+    }
+}
+
+@media(min-width: 993px) {
+    .title-2 {
+        display: none;
+    }
+}
+
+body {
+    overflow-y: hidden;
+}
+
+svg {
+    fill: var(--bs-body-color);
+}
+
+/*sidebar*/
+.sb-obj {
+    list-style: none;
+}
+
+.navbar {
+    background: var(--enf-one-col);
+    color: white !important;
+}
+
+.navbar svg {
+    fill: white !important;
+}
+
+.dropdown-menu svg {
+    fill: var(--bs-body-color) !important;
+}
+
+.offcanvas-header {
+    background: var(--enf-two-col);
+    z-index: 9999;
+    color: white;
+}
+
+.sb-obj li:hover {
+    background-color: var(--enfp-col5);
+    color: var(--bs-dark);
+    box-shadow: 0px 0px 35px -12px var(--bs-body-color);
+    -moz-box-shadow: 0px 0px 35px -12px var(--bs-body-color);
+    box-shadow: 0px 0px 35px -12px var(--bs-body-color);
+    cursor: pointer;
+}
+
+.sb-obj li:hover svg {
+    fill: var(--bs-dark);
+}
+
+.sb-obj svg {
+    fill: var(--bs-body-color);
+    margin-bottom: 4px;
+    margin-right: 1vh;
+}
+
+.sb-obj li.select {
+    background-color: var(--enfp-col3);
+    color: var(--bs-white);
+}
+
+.sb-obj li.select svg {
+    fill: var(--bs-white)
+}
+
+/*dropdown user*/
+.dropdown-menu svg {
+    fill: var(--bs-body-color);
+}
+
+.dropdown-item:active svg {
+    fill: var(--bs-dropdown-link-active-color);
+}
+
+
+/* contenedores */
+.contenedor {
+    min-height: calc(100vh - 81.81px) !important;
+    max-height: calc(100vh - 81.81px) !important;
+
+    z-index: 100;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.hide {
+    display: none;
+}
+
+.table-desk {
+    min-height: 78vh !important;
+    max-height: 78vh !important;
+    overflow-y: auto;
+}
+
+#bench2 caption,
+#bench3 caption,
+#bench4 caption,
+#bench5 caption {
+    background-color: var(--bs-body-bg);
+}
+
+.table-hist {
+    min-height: 82vh !important;
+    max-height: 82vh !important;
+    overflow-y: auto;
+}
+
+.table-hist-just {
+    min-height: calc(82vh - 46.22px) !important;
+    max-height: calc(82vh - 46.22px) !important;
+    overflow-y: auto;
+}
+
+.table-contact {
+    max-height: 75vh !important;
+    overflow-y: auto;
+}
+
+.tabGen .tab-pane {
+    max-height: calc(100vh - 153.56px) !important;
+    min-height: calc(100vh - 153.56px) !important;
+}
+
+.tables-config {
+    min-height: 72.5vh !important;
+    max-height: 72.5vh !important;
+    overflow-y: auto;
+}
+
+.tables-config caption {
+    background-color: var(--bs-body-bg);
+}
+
+.alert svg {
+    all: unset;
+    fill: var(--bs-alert-color) !important;
+}
+
+.btn-success svg {
+    all: unset;
+    fill: white !important;
+}
+
+.btn-primary svg {
+    all: unset;
+    fill: white !important;
+}
+
+.form-scroll {
+    max-height: 72.5vh !important;
+    overflow-y: auto;
+}
+
+.btn-outline-primary svg,
+.btn-outline-danger svg {
+    all: unset;
+    fill: var(--bs-btn-color);
+    transition: all .3s ease;
+}
+
+.btn-outline-primary:hover svg,
+.btn-outline-danger:hover svg {
+    all: unset;
+    fill: var(--bs-btn-hover-color);
+}
+
+.Caducado {
+    color: red;
+}
+
+.Vigente {
+    color: green;
+}
+
+.modal-header {
+    background: var(--enf-three-col);
+    color: white;
+}
+
+.modal-header button svg {
+    all: unset;
+    fill: white;
+    color: white;
+}
+
+.stats-count {
+    font-size: 3.5vh;
+}
+
+#modal-cons-med,
+#cons-sexo {
+    pointer-events: none;
+}
+
+.campo-invalido {
+    cursor: not-allowed;
+}
+
+#JustHistModal .btn {
+    display: flex;
+    justify-items: center;
+}
+
+#bench7 .row {
+    min-height: 100% !important;
+    max-height: 100% !important;
+    display: flex;
+}
+
+#bench7 .card-header h3 {
+    display: flex;
+    align-items: center;
+}
+
+#bench7 .card-header {
+    background-color: var(--bs-info-bg-subtle);
+}
+
+#bench7 .card-header .material-symbols-rounded {
+    margin-right: 10px;
+}
+
+input[readonly],
+select[readonly] {
+    cursor: not-allowed;
+}
+
+.input-group:has(input[readonly]) {
+    cursor: not-allowed;
+}
+
+/* animation dropdown */
+
+#dropdownUser.show {
+    opacity: 1;
+}
+
+.tab-container-row {
+    height: calc(100% - 150px);
+    overflow: hidden;
+}
+
+.tab-content-stat {
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* reader */
+.qr-container {
+    border: 2px dashed #e0e6ed;
+    background: var(--bs-body-bg);
+    cursor: pointer;
+}
+
+#reader1, 
+#reader2,
+#reader3 {
+    width: 100%;
+    height: 190px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.modal-dialog, #bench6 .input-group input.form-control, 
+.input-group textarea.form-control {
+    border-top-right-radius: 0.375rem !important;
+    border-bottom-right-radius: 0.375rem !important;
+}

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Medicamentos</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .alert-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid;
+        }
+        .alert-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .expired-card {
+            border-left-color: #dc3545;
+        }
+        .expiring-card {
+            border-left-color: #fd7e14;
+        }
+        .lowstock-card {
+            border-left-color: #ffc107;
+        }
+        .nostock-card {
+            border-left-color: #6c757d;
+        }
+        .nav-pills .nav-link.active {
+            background-color: #0d6efd;
+        }
+        .progress {
+            height: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5 text-center">
+        <button class="btn btn-lg btn-danger rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#medManagementModal">
+            <i class="bi bi-heart-pulse"></i> Control de Medicamentos
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
+                12 <span class="visually-hidden">alertas</span>
+            </span>
+        </button>
+    </div>
+
+    <!-- Modal de Gestión de Medicamentos -->
+    <div class="modal fade" id="medManagementModal" tabindex="-1" aria-labelledby="medManagementModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen-md-down">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="medManagementModalLabel">
+                        <i class="bi bi-heart-pulse"></i> Panel de Control de Medicamentos
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Resumen gráfico -->
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-header bg-primary text-white">
+                                    <i class="bi bi-calendar-check"></i> Estado de Caducidad
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="expiryChart" height="200"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-header bg-primary text-white">
+                                    <i class="bi bi-box-seam"></i> Niveles de Stock
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="stockChart" height="200"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navegación por píldoras -->
+                    <ul class="nav nav-pills mb-4 justify-content-center" id="meds-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="all-tab" data-bs-toggle="pill" data-bs-target="#all" type="button">
+                                <i class="bi bi-list-ul"></i> Todos
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="expired-tab" data-bs-toggle="pill" data-bs-target="#expired" type="button">
+                                <i class="bi bi-calendar-x"></i> Caducados
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="expiring-tab" data-bs-toggle="pill" data-bs-target="#expiring" type="button">
+                                <i class="bi bi-clock-history"></i> Por Caducar
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="stock-tab" data-bs-toggle="pill" data-bs-target="#stock" type="button">
+                                <i class="bi bi-boxes"></i> Stock
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Contenido de las pestañas -->
+                    <div class="tab-content" id="meds-tabContent">
+                        <!-- Todos los medicamentos -->
+                        <div class="tab-pane fade show active" id="all" role="tabpanel">
+                            <div class="row row-cols-1 row-cols-md-2 g-4">
+                                <!-- Medicamento caducado -->
+                                <div class="col">
+                                    <div class="card alert-card expired-card h-100">
+                                        <div class="card-header bg-danger text-white">
+                                            <div class="d-flex justify-content-between">
+                                                <span><i class="bi bi-exclamation-triangle"></i> CADUCADO</span>
+                                                <span class="badge bg-light text-dark">Lote: PAR2022</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Paracetamol 500mg</h5>
+                                            <p class="card-text text-muted">Analgésico y antipirético</p>
+                                            
+                                            <div class="row mt-3">
+                                                <div class="col-6">
+                                                    <small class="text-muted">Caducidad</small>
+                                                    <p class="mb-1 text-danger"><strong>15/03/2023</strong></p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <small class="text-muted">Stock</small>
+                                                    <p class="mb-1">120 unidades</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="mt-3">
+                                                <small class="text-muted">Ubicación</small>
+                                                <p class="mb-1"><i class="bi bi-upc-scan"></i> Estante A-12</p>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer bg-transparent">
+                                            <button class="btn btn-sm btn-outline-danger">
+                                                <i class="bi bi-trash"></i> Retirar
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary ms-2">
+                                                <i class="bi bi-info-circle"></i> Detalles
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Medicamento por caducar -->
+                                <div class="col">
+                                    <div class="card alert-card expiring-card h-100">
+                                        <div class="card-header bg-warning text-dark">
+                                            <div class="d-flex justify-content-between">
+                                                <span><i class="bi bi-clock"></i> POR CADUCAR</span>
+                                                <span class="badge bg-light text-dark">Lote: IBU2023</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Ibuprofeno 600mg</h5>
+                                            <p class="card-text text-muted">Antiinflamatorio no esteroideo</p>
+                                            
+                                            <div class="row mt-3">
+                                                <div class="col-6">
+                                                    <small class="text-muted">Caducidad</small>
+                                                    <p class="mb-1 text-warning"><strong>28/04/2023</strong></p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <small class="text-muted">Stock</small>
+                                                    <p class="mb-1">85 unidades</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="progress mt-2">
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" 
+                                                     aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            <small class="text-muted">90% del tiempo transcurrido</small>
+                                            
+                                            <div class="mt-2">
+                                                <small class="text-muted">Ubicación</small>
+                                                <p class="mb-1"><i class="bi bi-upc-scan"></i> Estante B-07</p>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer bg-transparent">
+                                            <button class="btn btn-sm btn-outline-warning">
+                                                <i class="bi bi-arrow-left-right"></i> Rotar
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary ms-2">
+                                                <i class="bi bi-info-circle"></i> Detalles
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Medicamento sin stock -->
+                                <div class="col">
+                                    <div class="card alert-card nostock-card h-100">
+                                        <div class="card-header bg-secondary text-white">
+                                            <div class="d-flex justify-content-between">
+                                                <span><i class="bi bi-box"></i> SIN STOCK</span>
+                                                <span class="badge bg-light text-dark">Lote: OME2023</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Omeprazol 20mg</h5>
+                                            <p class="card-text text-muted">Inhibidor de la bomba de protones</p>
+                                            
+                                            <div class="row mt-3">
+                                                <div class="col-6">
+                                                    <small class="text-muted">Caducidad</small>
+                                                    <p class="mb-1">15/12/2024</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <small class="text-muted">Stock</small>
+                                                    <p class="mb-1 text-danger"><strong>0 unidades</strong></p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="alert alert-danger mt-3 py-1">
+                                                <i class="bi bi-exclamation-triangle"></i> Stock mínimo requerido: 20 unidades
+                                            </div>
+                                            
+                                            <div class="mt-1">
+                                                <small class="text-muted">Último pedido</small>
+                                                <p class="mb-1">05/03/2023 (50 unidades)</p>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer bg-transparent">
+                                            <button class="btn btn-sm btn-outline-primary">
+                                                <i class="bi bi-cart-plus"></i> Solicitar
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary ms-2">
+                                                <i class="bi bi-info-circle"></i> Detalles
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Medicamento con stock bajo -->
+                                <div class="col">
+                                    <div class="card alert-card lowstock-card h-100">
+                                        <div class="card-header bg-warning text-dark">
+                                            <div class="d-flex justify-content-between">
+                                                <span><i class="bi bi-exclamation-triangle"></i> STOCK BAJO</span>
+                                                <span class="badge bg-light text-dark">Lote: LOR2023</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Loratadina 10mg</h5>
+                                            <p class="card-text text-muted">Antihistamínico no sedante</p>
+                                            
+                                            <div class="row mt-3">
+                                                <div class="col-6">
+                                                    <small class="text-muted">Caducidad</small>
+                                                    <p class="mb-1">10/09/2024</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <small class="text-muted">Stock</small>
+                                                    <p class="mb-1 text-warning"><strong>2 unidades</strong></p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="progress mt-2">
+                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 10%" 
+                                                     aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            <small class="text-muted">10% del stock mínimo</small>
+                                            
+                                            <div class="alert alert-warning mt-3 py-1">
+                                                <i class="bi bi-exclamation-triangle"></i> Consumo promedio: 5 unidades/semana
+                                            </div>
+                                        </div>
+                                        <div class="card-footer bg-transparent">
+                                            <button class="btn btn-sm btn-outline-primary">
+                                                <i class="bi bi-cart-plus"></i> Solicitar
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-secondary ms-2">
+                                                <i class="bi bi-info-circle"></i> Detalles
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Medicamentos caducados -->
+                        <div class="tab-pane fade" id="expired" role="tabpanel">
+                            <div class="alert alert-danger">
+                                <i class="bi bi-exclamation-triangle-fill"></i> <strong>Acción requerida:</strong> Hay 3 medicamentos caducados que deben ser retirados del inventario.
+                            </div>
+                            <!-- Contenido similar al anterior pero filtrado -->
+                        </div>
+                        
+                        <!-- Medicamentos por caducar -->
+                        <div class="tab-pane fade" id="expiring" role="tabpanel">
+                            <div class="alert alert-warning">
+                                <i class="bi bi-clock-fill"></i> <strong>Atención:</strong> 2 medicamentos están próximos a caducar (en los próximos 30 días).
+                            </div>
+                            <!-- Contenido similar al anterior pero filtrado -->
+                        </div>
+                        
+                        <!-- Problemas de stock -->
+                        <div class="tab-pane fade" id="stock" role="tabpanel">
+                            <div class="alert alert-info">
+                                <i class="bi bi-box-seam"></i> <strong>Inventario:</strong> 5 medicamentos tienen problemas de stock (bajo o agotado).
+                            </div>
+                            <!-- Contenido similar al anterior pero filtrado -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle"></i> Cerrar
+                    </button>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary">
+                            <i class="bi bi-file-earmark-excel"></i> Excel
+                        </button>
+                        <button type="button" class="btn btn-outline-primary">
+                            <i class="bi bi-file-earmark-pdf"></i> PDF
+                        </button>
+                        <button type="button" class="btn btn-outline-primary">
+                            <i class="bi bi-printer"></i> Imprimir
+                        </button>
+                    </div>
+                    <button type="button" class="btn btn-primary">
+                        <i class="bi bi-check-circle"></i> Marcar como revisado
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

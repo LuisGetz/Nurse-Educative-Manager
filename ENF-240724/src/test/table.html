@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enfermería Escolar</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Symbols Rounded -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        :root {
+            --header-bg-color: #215273;
+            --secondary-color: #3bafda;
+            --accent-color: #37bc9b;
+            --light-bg: #f5f7fa;
+            --border-color: #e0e6ed;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .header-bg {
+            background-color: var(--header-bg-color) !important;
+            color: white !important;
+        }
+
+        .badge-symptom {
+            background-color: rgba(33, 82, 115, 0.1);
+            color: var(--header-bg-color);
+        }
+
+        .badge-medicine {
+            background-color: rgba(55, 188, 155, 0.1);
+            color: var(--accent-color);
+        }
+
+        .qr-display {
+            height: 220px;
+            border: 2px dashed #e0e6ed;
+        }
+
+        .student-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: var(--header-bg-color);
+        }
+
+        .btn-header {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+        }
+
+        .btn-header:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .table-rounded thead th:first-child {
+            border-top-left-radius: 1rem !important;
+        }
+
+        .table-rounded thead th:last-child {
+            border-top-right-radius: 1rem !important;
+        }
+
+        .table-rounded tbody tr:last-child td:first-child {
+            border-bottom-left-radius: 1rem !important;
+        }
+
+        .table-rounded tbody tr:last-child td:last-child {
+            border-bottom-right-radius: 1rem !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid py-4">
+        <div class="row g-4">
+            <!-- Columna izquierda - Perfil y QR -->
+            <div class="col-lg-4">
+                <div class="card border-0 rounded-4 shadow-sm">
+                    <div class="card-header header-bg rounded-top-4 border-0">
+                        <h2 class="h5 mb-0 d-flex align-items-center">
+                            <span class="material-symbols-rounded me-2">qr_code_scanner</span>
+                            Escáner de Identificación
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div
+                            class="qr-display bg-light rounded-3 d-flex align-items-center justify-content-center mb-3">
+                            <span class="material-symbols-rounded text-muted" style="font-size: 3rem; opacity: 0.3;">
+                                qr_code_2
+                            </span>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="text" class="form-control rounded-start-3" placeholder="Ingrese matrícula">
+                            <button class="btn btn-primary rounded-end-3">
+                                <span class="material-symbols-rounded">search</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card Footer con info del estudiante -->
+                    <div class="card-footer bg-white border-0 rounded-bottom-4 d-flex align-items-center">
+                        <div
+                            class="student-avatar rounded-3 d-flex align-items-center justify-content-center text-white me-3">
+                            <span class="material-symbols-rounded">person</span>
+                        </div>
+                        <div>
+                            <div class="fw-bold">Keyla Grado Otroco</div>
+                            <small class="text-muted">5°B Programación</small>
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+    <!-- Columna derecha - Contenido principal -->
+    <div class="col-lg-8">
+        <!-- Tarjeta de Consultas -->
+        <div class="card border-0 rounded-4 shadow-sm mb-4"> <!-- rounded-4 -->
+            <div class="card-header header-bg rounded-top-4 border-0 d-flex justify-content-between align-items-center">
+                <!-- rounded-top-4 -->
+                <h2 class="h5 mb-0 d-flex align-items-center">
+                    <span class="material-symbols-rounded me-2">medical_information</span>
+                    Historial de Consultas
+                </h2>
+                <div class="d-flex">
+                    <button class="btn btn-header btn-sm rounded-pill me-2 d-flex justify-content-center align-items-center"> <!-- rounded-pill -->
+                        <span class="material-symbols-rounded">filter_alt</span>
+                        Filtrar
+                    </button>
+                    <button class="btn btn-header btn-sm rounded-pill d-flex justify-content-center align-items-center"> <!-- rounded-pill -->
+                        <span class="material-symbols-rounded">download</span>
+                        Exportar
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive" style="max-height: 400px;">
+                    <table class="table table-hover mb-0 table-rounded">
+                        <!-- table-rounded para esquinas personalizadas -->
+                        <thead class="sticky-top">
+                            <tr>
+                                <th class="bg-light">ID</th>
+                                <th class="bg-light">Fecha</th>
+                                <th class="bg-light">Síntomas</th>
+                                <th class="bg-light">Tratamiento</th>
+                                <th class="bg-light">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#31</td>
+                                <td>
+                                    <div class="fw-bold">18 Abr 2025</div>
+                                    <small class="text-muted">20:49</small>
+                                </td>
+                                <td>
+                                    <span class="badge badge-symptom rounded-pill"> <!-- rounded-pill -->
+                                        Primeros Auxilios
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-medicine rounded-pill"> <!-- rounded-pill -->
+                                        Ibuprofeno (1)
+                                    </span>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-secondary rounded-3 me-1"
+                                        title="Ver detalles"> <!-- rounded-3 -->
+                                        <span class="material-symbols-rounded">visibility</span>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary rounded-3"
+                                        title="Generar justificante"> <!-- rounded-3 -->
+                                        <span class="material-symbols-rounded">description</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta de Justificantes -->
+        <div class="card border-0 rounded-4 shadow-sm"> <!-- rounded-4 -->
+            <div class="card-header header-bg rounded-top-4 border-0 d-flex justify-content-between align-items-center">
+                <!-- rounded-top-4 -->
+                <h2 class="h5 mb-0 d-flex align-items-center">
+                    <span class="material-symbols-rounded me-2">description</span>
+                    Justificantes Médicos
+                </h2>
+                <button class="btn btn-primary btn-sm rounded-pill"> <!-- rounded-pill -->
+                    <span class="material-symbols-rounded">add</span>
+                    Nuevo Justificante
+                </button>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive" style="max-height: 400px;">
+                    <table class="table table-hover mb-0 table-rounded">
+                        <!-- table-rounded para esquinas personalizadas -->
+                        <thead class="sticky-top">
+                            <tr>
+                                <th class="bg-light">ID</th>
+                                <th class="bg-light">Estudiante</th>
+                                <th class="bg-light">Fecha</th>
+                                <th class="bg-light">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#J-2025-02</td>
+                                <td>
+                                    <div class="fw-bold">Keyla Grado Otroco</div>
+                                    <small class="text-muted">5°B Programación</small>
+                                </td>
+                                <td>
+                                    <div class="fw-bold">17 Feb 2025</div>
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-secondary rounded-3 me-1"
+                                        title="Ver justificante"> <!-- rounded-3 -->
+                                        <span class="material-symbols-rounded">visibility</span>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary rounded-3" title="Descargar PDF">
+                                        <!-- rounded-3 -->
+                                        <span class="material-symbols-rounded">download</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
