@@ -81,7 +81,7 @@ Digitalizar y optimizar la administración de la enfermería escolar mediante un
 
 ## 👨‍💻 Autor
 
-**Luis Gutierrez (iamluisgetz)**
+**Luis Gutierrez (iamluisgetz), Keyla Grado**
 
 Desarrollado como proyecto académico y de innovación tecnológica para el área de enfermería escolar.
 
