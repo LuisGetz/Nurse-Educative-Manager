@@ -1,7 +1,7 @@
 # 🏥 Nurse Educative Manager (NEM)
 
 > 🏆 **Proyecto participante del XXVII Concurso Nacional de Prototipos y Proyectos de Emprendimiento (CNPPE) DGETI 2025**, celebrado en Pachuca de Soto, Hidalgo.
-Sistema administrativo web para la gestión de los servicios de **Enfermería Escolar**, desarrollado con PHP, JavaScript y MySQL.
+Sistema administrativo web para la gestión de los servicios de **Enfermería Escolar** de DGETI, desarrollado con PHP, JavaScript y MySQL.
 
 El objetivo del proyecto es facilitar el registro, consulta y administración de la información médica de los estudiantes, optimizando los procesos realizados por el personal de enfermería dentro de una institución educativa.
 
