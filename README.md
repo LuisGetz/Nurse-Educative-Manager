@@ -79,7 +79,7 @@ Este proyecto fue presentado en el **XXVII Concurso Nacional de Prototipos y Pro
 
 Digitalizar y optimizar la administración de la enfermería escolar mediante una plataforma web que permita centralizar la información clínica y administrativa de los estudiantes, reduciendo tiempos de consulta y mejorando el seguimiento de cada atención.
 
-## 👨‍💻 Autor
+## 👨‍💻 Autores
 
 **Luis Gutierrez (iamluisgetz), Keyla Grado**
 
