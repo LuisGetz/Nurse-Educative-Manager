@@ -75,24 +75,13 @@ src/db/
 
 Este proyecto fue presentado en el **XXVII Concurso Nacional de Prototipos y Proyectos de Emprendimiento (CNPPE) de la DGETI**, celebrado en **Pachuca de Soto, Hidalgo**, del **9 al 13 de junio**, representando una propuesta tecnológica para apoyar la gestión de los servicios de enfermería en instituciones educativas.
 
-## 📸 Capturas
-
-Puedes agregar imágenes como las siguientes:
-
-* Pantalla de inicio de sesión.
-* Panel principal.
-* Registro de atenciones.
-* Administración de medicamentos.
-* Escáner QR.
-* Estadísticas del sistema.
-
 ## 🎯 Objetivo
 
 Digitalizar y optimizar la administración de la enfermería escolar mediante una plataforma web que permita centralizar la información clínica y administrativa de los estudiantes, reduciendo tiempos de consulta y mejorando el seguimiento de cada atención.
 
 ## 👨‍💻 Autor
 
-**Luis Getz**
+**Luis Gutierrez (iamluisgetz)**
 
 Desarrollado como proyecto académico y de innovación tecnológica para el área de enfermería escolar.
 
