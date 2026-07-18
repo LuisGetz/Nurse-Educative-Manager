@@ -1,46 +1,101 @@
-# 🏥 Sistema Administrativo para Enfermería Escolar
+# 🏥 Nurse Educative Manager (NEM)
 
-Sistema web desarrollado para optimizar la gestión administrativa de los servicios de enfermería escolar. La plataforma centraliza la información médica de los estudiantes, el registro de atenciones y diversos procesos administrativos, facilitando la organización y el acceso a la información.
+> 🏆 **Proyecto participante del XXVII Concurso Nacional de Prototipos y Proyectos de Emprendimiento (CNPPE) DGETI 2025**, celebrado en Pachuca de Soto, Hidalgo.
+Sistema administrativo web para la gestión de los servicios de **Enfermería Escolar**, desarrollado con PHP, JavaScript y MySQL.
 
-## Características
+El objetivo del proyecto es facilitar el registro, consulta y administración de la información médica de los estudiantes, optimizando los procesos realizados por el personal de enfermería dentro de una institución educativa.
 
-* Gestión de estudiantes.
-* Registro de atenciones de enfermería.
-* Historial médico por estudiante.
-* Sistema de autenticación de usuarios.
-* Panel administrativo con indicadores.
-* Búsqueda y filtrado de registros.
-* Interfaz web responsiva.
+## ✨ Características
 
-## Tecnologías utilizadas
+* 🔐 Inicio de sesión para usuarios autorizados.
+* 👨‍⚕️ Panel administrativo de enfermería.
+* 🩺 Registro y consulta de atenciones médicas.
+* 💊 Administración y alertas de medicamentos.
+* 📱 Escaneo de códigos QR para identificación de estudiantes.
+* 📊 Visualización de información mediante gráficas.
+* 📄 Generación de documentos en PDF.
+* 🎨 Interfaz moderna y responsiva con Bootstrap 5.
 
-* **PHP**
-* **JavaScript**
-* **HTML5**
-* **CSS3**
-* **MySQL**
+## 🛠 Tecnologías utilizadas
 
-## Objetivo
+* PHP
+* JavaScript
+* HTML5
+* CSS3
+* Bootstrap 5
+* MySQL
+* Chart.js
+* html5-qrcode
+* html2pdf.js
 
-Desarrollar una solución informática que apoye la administración de la enfermería escolar mediante la digitalización y organización de los registros médicos y administrativos, mejorando la eficiencia en la atención y el seguimiento de los estudiantes.
+## 📁 Estructura del proyecto
 
-## Participación en concurso
+```text
+ENF-240724/
+├── app.php                # Panel principal
+├── index.php              # Inicio de sesión
+├── enfcetis093.sql        # Base de datos
+└── src/
+    ├── assets/
+    ├── css/
+    ├── db/
+    ├── img/
+    ├── js/
+    ├── lib/
+    └── upload/
+```
 
-Este proyecto fue presentado en el **XXVII Concurso Nacional de Prototipos y Proyectos de Emprendimiento (CNPPE) de la DGETI**, celebrado en **Pachuca de Soto, Hidalgo**, del **9 al 13 de junio**, como una propuesta de software orientada a fortalecer la gestión de los servicios de enfermería en instituciones educativas.
+## 🚀 Instalación
 
-## Instalación
+1. Clona el repositorio.
 
-1. Clona este repositorio.
-2. Coloca el proyecto en el directorio de tu servidor local (por ejemplo, XAMPP o Laragon).
-3. Importa la base de datos MySQL incluida.
-4. Configura los datos de conexión a la base de datos.
-5. Inicia los servicios de Apache y MySQL.
-6. Accede al proyecto desde tu navegador.
+```bash
+git clone https://github.com/LuisGetz/Nurse-Educative-Manager.git
+```
 
-## Capturas de pantalla
+2. Copia la carpeta del proyecto en tu servidor local (XAMPP, Laragon o similar).
 
-> Aquí puedes agregar imágenes del panel principal, gestión de estudiantes, registro de atenciones y demás módulos del sistema.
+3. Importa la base de datos:
 
-## Licencia
+```
+enfcetis093.sql
+```
+
+4. Configura la conexión con MySQL desde los archivos correspondientes en:
+
+```
+src/db/
+```
+
+5. Inicia Apache y MySQL.
+
+6. Abre el proyecto desde tu navegador.
+
+## 🏆 Participación
+
+Este proyecto fue presentado en el **XXVII Concurso Nacional de Prototipos y Proyectos de Emprendimiento (CNPPE) de la DGETI**, celebrado en **Pachuca de Soto, Hidalgo**, del **9 al 13 de junio**, representando una propuesta tecnológica para apoyar la gestión de los servicios de enfermería en instituciones educativas.
+
+## 📸 Capturas
+
+Puedes agregar imágenes como las siguientes:
+
+* Pantalla de inicio de sesión.
+* Panel principal.
+* Registro de atenciones.
+* Administración de medicamentos.
+* Escáner QR.
+* Estadísticas del sistema.
+
+## 🎯 Objetivo
+
+Digitalizar y optimizar la administración de la enfermería escolar mediante una plataforma web que permita centralizar la información clínica y administrativa de los estudiantes, reduciendo tiempos de consulta y mejorando el seguimiento de cada atención.
+
+## 👨‍💻 Autor
+
+**Luis Getz**
+
+Desarrollado como proyecto académico y de innovación tecnológica para el área de enfermería escolar.
+
+## 📄 Licencia
 
 Este proyecto se comparte con fines académicos y como parte de mi portafolio de desarrollo de software.
